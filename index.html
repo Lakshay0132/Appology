@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Matko 🌹 — From Your Cuchu Puchu</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #2b0911 0%, #581825 50%, #832232 100%);
+            color: #fce4e6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        /* Floating Rose Petals Effect */
+        .petal {
+            position: absolute;
+            background: #ff4d6d;
+            border-radius: 150% 0 150% 0;
+            animation: fall linear infinite;
+            opacity: 0.65;
+            z-index: 1;
+        }
+        @keyframes fall {
+            0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+        }
+
+        .container {
+            position: relative;
+            z-index: 10;
+            background: rgba(45, 10, 16, 0.92);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 105, 135, 0.4);
+            border-radius: 24px;
+            padding: 45px 30px 35px 30px;
+            max-width: 520px;
+            width: 100%;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+            text-align: center;
+            margin-top: 75px;
+        }
+
+        /* Photo Styling */
+        .photo-container {
+            position: absolute;
+            top: -70px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 135px;
+            height: 135px;
+            border-radius: 50%;
+            background-color: #fff;
+            padding: 4px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            z-index: 11;
+        }
+
+        .profile-photo {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #ff8fa3;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: #ff8fa3;
+            margin-bottom: 5px;
+            margin-top: 55px;
+        }
+
+        .bouquet-icon {
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+        }
+
+        .subtitle {
+            font-size: 0.9rem;
+            color: #e2bbc2;
+            margin-bottom: 25px;
+            font-style: italic;
+        }
+
+        /* Apology Part Card Styling */
+        .apology-card {
+            display: none;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 25px 20px;
+            border-left: 4px solid #ff4d6d;
+            text-align: left;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .apology-card.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .apology-badge {
+            display: inline-block;
+            background: rgba(255, 77, 109, 0.2);
+            color: #ff8fa3;
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 4px 12px;
+            border-radius: 20px;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .apology-card h3 {
+            font-size: 1.15rem;
+            color: #ffb3c1;
+            margin-bottom: 10px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .apology-card p {
+            font-size: 0.92rem;
+            line-height: 1.6;
+            color: #f4d6dc;
+            margin-bottom: 20px;
+        }
+
+        /* Buttons */
+        .btn-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 15px;
+            position: relative;
+        }
+
+        button {
+            padding: 12px 24px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .next-btn {
+            background: linear-gradient(135deg, #ff4d6d, #c9184a);
+            color: white;
+            box-shadow: 0 4px 15px rgba(255, 77, 109, 0.4);
+            width: 100%;
+        }
+
+        .next-btn:hover {
+            transform: scale(1.02);
+        }
+
+        #noBtn {
+            background: rgba(255, 255, 255, 0.15);
+            color: #ffb3c1;
+        }
+
+        #yesBtn {
+            background: linear-gradient(135deg, #2ed573, #26af5f);
+            color: white;
+            box-shadow: 0 4px 15px rgba(46, 213, 115, 0.4);
+        }
+
+        /* Celebration Screen */
+        #celebrationScreen {
+            display: none;
+            text-align: center;
+            animation: fadeIn 0.6s ease-in-out;
+        }
+
+        .dance-couple {
+            font-size: 4rem;
+            margin: 15px 0;
+            animation: bounce 1.5s infinite alternate;
+        }
+
+        @keyframes bounce {
+            from { transform: translateY(0); }
+            to { transform: translateY(-10px); }
+        }
+
+        #celebrationScreen h2 {
+            font-family: 'Playfair Display', serif;
+            color: #2ed573;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+
+        #celebrationScreen p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #f4d6dc;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Floating rose petals background container -->
+    <div id="petals-container"></div>
+
+    <div class="container">
+        <!-- Private Local Photo: Change 'photo.jpg' to your image file name -->
+        <div class="photo-container">
+            <img src="photo.jpg" alt="My Matko" class="profile-photo">
+        </div>
+
+        <div class="bouquet-icon">🌹💐</div>
+        <h1>For My Matko</h1>
+        <div class="subtitle">A piece of my heart, written just for you 🥺</div>
+
+        <!-- APOLOGY PART 1 -->
+        <div class="apology-card active" id="part1">
+            <span class="apology-badge">Part 1 — My Immaturity</span>
+            <h3>I am so sorry for my words</h3>
+            <p>
+                Matko, I am deeply sorry for making you cry and saying things without thinking. That was pure immaturity on my part. You have a pure heart and only desire true love, and I hate myself for ever being the reason behind your tears 🥺💔.
+            </p>
+            <button class="next-btn" onclick="nextPart(2)">Read Next Apology ➡️</button>
+        </div>
+
+        <!-- APOLOGY PART 2 -->
+        <div class="apology-card" id="part2">
+            <span class="apology-badge">Part 2 — Not Understanding You</span>
+            <h3>I am sorry for missing your pure love</h3>
+            <p>
+                I am so deeply apologetic for not understanding you when you were simply asking for love and emotional safety. Instead of treasuring what we share, my carelessness caused distance. I am truly sorry for failing you here 🙏❤️.
+            </p>
+            <button class="next-btn" onclick="nextPart(3)">Read Next Apology ➡️</button>
+        </div>
+
+        <!-- APOLOGY PART 3 -->
+        <div class="apology-card" id="part3">
+            <span class="apology-badge">Part 3 — Leaving You Alone</span>
+            <h3>I am sorry for running away</h3>
+            <p>
+                I am so sorry for not being there on time and leaving you really alone. But please know that deep down, part of that was my own fear of breaking you again. I was foolish and scared, but pulling away was my biggest mistake. Please don't leave me forever—I promise to love you so deeply that you will heal from all previous scars 🌹✨.
+            </p>
+            <button class="next-btn" onclick="nextPart(4)">Read Final Request ❤️</button>
+        </div>
+
+        <!-- APOLOGY PART 4: The Final Request -->
+        <div class="apology-card" id="part4">
+            <span class="apology-badge">Part 4 — A Request From Your Cuchu Puchu</span>
+            <h3>Please give us one last chance</h3>
+            <p>
+                From our school days back in 6th class to all those long college visits I made just to catch a glimpse of you... my heart has always belonged to you. All I want is to build a happy, peaceful life together by your side.
+            </p>
+            <p style="font-weight: 600; color: #ffb3c1;">
+                Will you please give your Cuchu Puchu one last chance to make everything right and hold your hand forever? 🥺🌹
+            </p>
+            <button class="next-btn" onclick="nextPart(5)" style="margin-top: 15px; background: linear-gradient(135deg, #ff758c, #ff7eb3);">Express How Much I Love You ❤️</button>
+        </div>
+
+        <!-- APOLOGY PART 5: Deep Love Expression -->
+        <div class="apology-card" id="part5">
+            <span class="apology-badge">Final Part — A Confession From My Soul</span>
+            <h3>I Love You So Much, Matko</h3>
+            <p>
+                More than words could ever explain, more than any mistake I've made, my heart beats only for you. You are my home, my peace, and my favorite part of every single day. I can't imagine breathing in a world where you aren't by my side. 
+            </p>
+            <p style="font-weight: 600; color: #ffb3c1; margin-top: 10px;">
+                Are you ready to say yes to your Cuchu Puchu? 🥰💍
+            </p>
+            <div class="btn-container" id="buttonGroup">
+                <button id="yesBtn" onclick="celebrate()">Yes, I Accept ❤️</button>
+                <button id="noBtn" onmouseover="moveButton()" onclick="moveButton()">No 😤</button>
+            </div>
+        </div>
+
+        <!-- CELEBRATION FINALE SCREEN -->
+        <div id="celebrationScreen">
+            <div class="dance-couple">💃🕺✨</div>
+            <h2>Yay! Thank You, My Matko! 🥰🌹</h2>
+            <p>
+                You’ve made me the happiest Cuchu Puchu in the world! I promise to cherish your pure heart, never take you for granted, and fill your life with red roses and happiness every single day! 🥂💖
+            </p>
+        </div>
+
+    </div>
+
+    <script>
+        /* Create floating petals */
+        const container = document.getElementById('petals-container');
+        for (let i = 0; i < 30; i++) {
+            const petal = document.createElement('div');
+            petal.classList.add('petal');
+            petal.style.left = Math.random() * 100 + 'vw';
+            petal.style.top = -Math.random() * 20 + 'vh';
+            petal.style.width = (Math.random() * 12 + 10) + 'px';
+            petal.style.height = (Math.random() * 18 + 15) + 'px';
+            petal.style.animationDuration = (Math.random() * 5 + 4) + 's';
+            petal.style.animationDelay = (Math.random() * 5) + 's';
+            container.appendChild(petal);
+        }
+
+        /* Navigation between apology parts */
+        function nextPart(partNumber) {
+            document.querySelectorAll('.apology-card').forEach(card => card.classList.remove('active'));
+            document.getElementById('part' + partNumber).classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        /* Playful button movement for the "No" button */
+        function moveButton() {
+            const noBtn = document.getElementById('noBtn');
+            const x = (Math.random() - 0.5) * 160;
+            const y = (Math.random() - 0.5) * 60;
+            noBtn.style.transform = `translate(${x}px, ${y}px)`;
+        }
+
+        /* Celebration trigger */
+        function celebrate() {
+            document.querySelectorAll('.apology-card').forEach(card => card.style.display = 'none');
+            document.getElementById('celebrationScreen').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
